@@ -1,7 +1,18 @@
-import { Environment, OrbitControls, useGLTF } from '@react-three/drei';
+import {
+  Environment,
+  OrbitControls,
+  useGLTF,
+  Html,
+  useProgress,
+} from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { Mesh } from 'three';
+
+function Loader() {
+  const { progress } = useProgress();
+  return <Html center>{progress} % loaded</Html>;
+}
 
 const Model = () => {
   const floorPlan = useGLTF('/floorPlan/scan.gltf');
@@ -43,7 +54,9 @@ const MainView = () => {
           color="#fff"
           castShadow
         />
-        <Model />
+        <Suspense fallback={<Loader />}>
+          <Model />
+        </Suspense>
         <OrbitControls makeDefault />
         <Environment background={true} blur={0.5} preset={'sunset'} />
       </Canvas>
