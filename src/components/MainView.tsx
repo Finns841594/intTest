@@ -1,5 +1,32 @@
-import { Box, OrbitControls } from '@react-three/drei';
+import { Environment, OrbitControls, useGLTF } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
+import { useEffect } from 'react';
+import { Mesh } from 'three';
+
+const Model = () => {
+  const floorPlan = useGLTF('/floorPlan/scan.gltf');
+  useEffect(() => {
+    console.log(floorPlan);
+    floorPlan.scene.traverse(child => {
+      // if (child instanceof Mesh) {
+      //   console.log('Mesh Name:', child.name || 'Unnamed', 'Mesh:', child);
+      // }
+      if (
+        child instanceof Mesh &&
+        child.name.toLowerCase().includes('ceilingnode')
+      ) {
+        child.visible = false;
+      }
+      if (child instanceof Mesh && child.name.toLowerCase().includes('wall')) {
+        child.castShadow = true;
+      }
+      if (child instanceof Mesh && child.name.toLowerCase().includes('floor')) {
+        child.receiveShadow = true;
+      }
+    });
+  }, [floorPlan]);
+  return <primitive object={floorPlan.scene} />;
+};
 
 const MainView = () => {
   return (
@@ -16,10 +43,9 @@ const MainView = () => {
           color="#fff"
           castShadow
         />
-        <Box position={[0, 0, 0]}>
-          <meshStandardMaterial color="hotpink" />
-        </Box>
+        <Model />
         <OrbitControls makeDefault />
+        <Environment background={true} blur={0.5} preset={'sunset'} />
       </Canvas>
     </>
   );
