@@ -16,17 +16,17 @@ const Loader = () => {
 };
 
 const MainScene = () => {
-  const { products } = useProductContext();
+  const { products, productNewPosition } = useProductContext();
+  console.log('products now: ', products);
+  // console.log('productNewPosition', productNewPosition);
 
   return (
     <>
       <Suspense fallback={<Loader />}>
         <Room />
-        {/* <ProductUniFi position={new Vector3(0, 0, 0)} /> */}
-        {products &&
-          products.map(product => (
-            <ProductUniFi key={product.id} productInfo={product} />
-          ))}
+        {products.map(product => (
+          <ProductUniFi key={product.id} productInfo={product} />
+        ))}
         <OrbitControls makeDefault />
         <Environment background={true} blur={0.5} preset={'sunset'} />
       </Suspense>

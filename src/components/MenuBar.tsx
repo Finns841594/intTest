@@ -11,7 +11,12 @@ const MenuBar = () => {
       id: uuidv4(),
       name: 'UniFi',
       modelPath: 'products/UniFi_AP_AC/UniFi_AP_AC_3D_model.gltf',
-      position: new Vector3(0, 0, 0),
+      position:
+        products.length > 0
+          ? products[products.length - 1].position
+              .clone()
+              .add(new Vector3(1, 0, 1))
+          : new Vector3(0, 0, 0),
     } as Product;
     setAddAProduct(true);
     setProducts([...products, newProducts]);

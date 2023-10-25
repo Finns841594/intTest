@@ -75,7 +75,6 @@ const Room = () => {
   }, [wallMeshes, isAttached]);
 
   const onClickHandle = () => {
-    console.log('clicking');
     if (!isAttached) {
       setIsAttached(true);
       setProducts(
@@ -85,9 +84,8 @@ const Room = () => {
             : product
         )
       );
-      console.log('positioned');
-      console.log('currentProductId:', currentProductId);
-      console.log(products);
+      console.log('positioned product: ', currentProductId);
+      // console.log('products now: ', products);
     }
   };
 
