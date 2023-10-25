@@ -5,7 +5,13 @@ import { Mesh, Vector2 } from 'three';
 import { useProductContext } from '../contexts/AppContext';
 
 const Room = () => {
-  const { setProductPosition, isAttached, setIsAttached } = useProductContext();
+  const {
+    setProductPosition,
+    canBePlaced,
+    setCanBePlaced,
+    isAttached,
+    setIsAttached,
+  } = useProductContext();
   const floorPlan = useGLTF('/floorPlan/scan.gltf');
   const { raycaster, camera } = useThree();
   const mouse = new Vector2();
@@ -27,7 +33,7 @@ const Room = () => {
         if (child.name.toLowerCase().includes('floor')) {
           child.receiveShadow = true;
         }
-        if (child.name.toLowerCase().includes('wall') && isAttached) {
+        if (child.name.toLowerCase().includes('wall') && canBePlaced) {
           child.material.color.set('blue');
         } else {
           child.material.color.set('white');
@@ -35,7 +41,7 @@ const Room = () => {
       }
     });
     setWallMeshes(walls);
-  }, [floorPlan, isAttached]);
+  }, [floorPlan, canBePlaced]);
 
   const onMouseMove = (event: any) => {
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
@@ -45,20 +51,22 @@ const Room = () => {
     const intersects = raycaster.intersectObjects(wallMeshes);
 
     if (intersects.length > 0) {
-      setIsAttached(true);
+      setCanBePlaced(true);
       const [firstIntersection] = intersects;
       const newPosition = firstIntersection.point.toArray();
-      // console.log('Position', newPosition);
-      setProductPosition(newPosition);
+      if (!isAttached) {
+        console.log('Position', newPosition);
+        setProductPosition(newPosition);
+      }
     } else {
-      setIsAttached(false);
+      setCanBePlaced(false);
     }
   };
 
   useEffect(() => {
     document.addEventListener('mousemove', onMouseMove);
     return () => document.removeEventListener('mousemove', onMouseMove);
-  }, [wallMeshes]);
+  }, [wallMeshes, isAttached]);
 
   return <primitive object={floorPlan.scene} />;
 };

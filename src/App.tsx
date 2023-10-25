@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import MainScene from './components/MainScene';
 import { ProductProvider } from './contexts/AppContext';
 

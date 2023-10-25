@@ -7,6 +7,8 @@ interface ProductProviderProps {
 interface ProductContextType {
   productPosition: number[];
   setProductPosition: React.Dispatch<React.SetStateAction<number[]>>;
+  canBePlaced: boolean;
+  setCanBePlaced: React.Dispatch<React.SetStateAction<boolean>>;
   isAttached: boolean;
   setIsAttached: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -25,11 +27,19 @@ export const ProductProvider: React.FC<ProductProviderProps> = ({
   children,
 }) => {
   const [productPosition, setProductPosition] = useState([0, 0, 0]);
-  const [isAttached, setIsAttached] = useState(false);
+  const [isAttached, setIsAttached] = useState(true);
+  const [canBePlaced, setCanBePlaced] = useState(false);
 
   return (
     <ProductContext.Provider
-      value={{ productPosition, setProductPosition, isAttached, setIsAttached }}
+      value={{
+        productPosition,
+        setProductPosition,
+        isAttached,
+        setIsAttached,
+        canBePlaced,
+        setCanBePlaced,
+      }}
     >
       {children}
     </ProductContext.Provider>
