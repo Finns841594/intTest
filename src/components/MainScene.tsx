@@ -8,6 +8,7 @@ import { Canvas } from '@react-three/fiber';
 import { Suspense } from 'react';
 import Room from './Room';
 import ProductUniFi from './ProductUniFi';
+import { useProductContext } from '../contexts/AppContext';
 
 const Loader = () => {
   const { progress } = useProgress();
@@ -32,9 +33,9 @@ const MainScene = () => {
         <Suspense fallback={<Loader />}>
           <Room />
           <ProductUniFi />
+          <OrbitControls makeDefault />
+          <Environment background={true} blur={0.5} preset={'sunset'} />
         </Suspense>
-        <OrbitControls makeDefault />
-        <Environment background={true} blur={0.5} preset={'sunset'} />
       </Canvas>
     </>
   );
