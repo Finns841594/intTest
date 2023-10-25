@@ -1,9 +1,14 @@
 import { useGLTF } from '@react-three/drei';
 import { useProductContext } from '../contexts/AppContext';
+import { Vector3 } from 'three';
 
-const ProductUniFi = () => {
+interface ProductUniFiProp {
+  position: Vector3;
+}
+
+const ProductUniFi: React.FC<ProductUniFiProp> = ({ position }) => {
   const product = useGLTF('products/UniFi_AP_AC/UniFi_AP_AC_3D_model.gltf');
-  const { productPosition, setIsAttached, isAttached } = useProductContext();
+  const { productPosition, setIsAttached } = useProductContext();
 
   const scaleValue = 0.1;
   if (product.scene) {
@@ -11,8 +16,8 @@ const ProductUniFi = () => {
   }
 
   const onProductClick = () => {
-    setIsAttached(!isAttached);
-    console.log('is attached:', isAttached);
+    setIsAttached(false);
+    console.log('re-positioning');
   };
 
   return (
