@@ -1,6 +1,7 @@
-import { Box, useGLTF } from '@react-three/drei';
+import { useGLTF } from '@react-three/drei';
 import { useProductContext } from '../contexts/AppContext';
 import { Product } from '../types/innerTypes';
+import { Vector3 } from 'three';
 
 interface ProductUniFiProp {
   productInfo: Product;
@@ -8,15 +9,25 @@ interface ProductUniFiProp {
 
 const ProductUniFi: React.FC<ProductUniFiProp> = ({ productInfo }) => {
   const product = useGLTF(productInfo.modelPath);
-  const { productNewPosition, setIsAttached, isAttached, setCurrentProductId } =
-    useProductContext();
-
-  const scaleValue = 0.1;
+  const {
+    productNewPosition,
+    setIsAttached,
+    isAttached,
+    currentProductId,
+    setCurrentProductId,
+  } = useProductContext();
+  const scaleValue = 0.05;
   if (product.scene) {
     product.scene.scale.set(scaleValue, scaleValue, scaleValue);
   }
 
   console.log('I am ', productInfo.id, 'at', productInfo.position);
+
+  const limitProductHeigt = (vec: Vector3): Vector3 => {
+    // can set the limitation relates to the Room height
+    const limitedHeigt = Math.max(0.5, Math.min(vec.y, 2.8));
+    return new Vector3(vec.x, limitedHeigt, vec.z);
+  };
 
   const onProductClick = () => {
     if (isAttached) {
@@ -29,9 +40,13 @@ const ProductUniFi: React.FC<ProductUniFiProp> = ({ productInfo }) => {
   return (
     <primitive
       object={product.scene.clone(true)}
-      // position={[productPosition[0], 1, productPosition[2]]}
-      position={isAttached ? productInfo.position : productNewPosition}
-      // position={productInfo.position}
+      position={limitProductHeigt(
+        isAttached
+          ? productInfo.position
+          : currentProductId === productInfo.id
+          ? productNewPosition
+          : productInfo.position
+      )}
       onClick={onProductClick}
     />
   );
