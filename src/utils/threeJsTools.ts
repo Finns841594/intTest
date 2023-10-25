@@ -1,4 +1,6 @@
+import { useContext } from 'react';
 import { Camera, Raycaster, Vector2, Scene, WebGLRenderer } from 'three';
+import { useProductContext } from '../contexts/AppContext';
 
 export const getWorldCoords = (
   mouseX: number,

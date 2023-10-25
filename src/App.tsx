@@ -23,6 +23,8 @@ function App() {
           />
           <MainScene />
         </Canvas>
+        <h1>CurrentProductsList</h1>
+        {/* <CurrentProductsList /> */}
       </div>
     </ProductProvider>
   );
