@@ -6,15 +6,15 @@ export const initialProducts = [
     id: 'ec65abde-287d-43ce-b2c5-b2a6ca3f5811',
     name: 'UniFi',
     modelPath: 'products/UniFi_AP_AC/UniFi_AP_AC_3D_model.gltf',
-    position: new Vector3(0.66, 2.6, 1.25),
-    quaternion: [0, 0, 0, 1],
+    position: new Vector3(11, 0.8, 9.2),
+    quaternion: [0, -0.3605371251501466, 0, 0.9327448640375714],
   },
   {
     id: '0b40d87e-351d-4133-a962-a8f16fba300d',
     name: 'UniFi Blue',
     modelPath: 'products/UniFi_AP_AC_COS/UniFi_AP_AC_Blue.gltf',
-    position: new Vector3(2.3, 2.6, 1.25),
-    quaternion: [0, 0, 0, 1],
+    position: new Vector3(12.5, 0.8, 10.6),
+    quaternion: [0, -0.3605371251501466, 0, 0.9327448640375714],
   },
 ] as unknown as Product[];
 

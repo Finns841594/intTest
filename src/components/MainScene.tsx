@@ -24,7 +24,7 @@ const MainScene = () => {
         style={{ width: '100%', height: '100%' }}
         camera={{
           fov: 70,
-          position: [3.5, 2.5, 6],
+          position: [14, 0, 15],
         }}
         shadows
       >

@@ -2,9 +2,8 @@
 import { useGLTF } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
 import { useEffect, useState } from 'react';
-import { Mesh, Quaternion, Vector2, Vector3 } from 'three';
+import { Mesh, Quaternion, Vector2 } from 'three';
 import { useProductContext } from '../contexts/AppContext';
-import { computeAlignmentQuaternion } from '../utils/threeJsTools';
 
 const Room = () => {
   const {
@@ -24,31 +23,35 @@ const Room = () => {
   const { raycaster, camera } = useThree();
   const mouse = new Vector2();
   const [wallMeshes, setWallMeshes] = useState<Mesh[]>([]);
+  const [allMeshes, setAllMeshes] = useState<Mesh[]>([]);
 
   useEffect(() => {
     const walls: Mesh[] = [];
+    const allMeshes: Mesh[] = [];
 
     floorPlan.scene.traverse(child => {
       if (child instanceof Mesh) {
+        allMeshes.push(child);
         if (child.name.toLowerCase().includes('ceilingnode')) {
-          child.visible = false;
-        } else if (child.name.toLowerCase().includes('wall')) {
+          // child.visible = false;
+        }
+        if (child.name.toLowerCase().includes('wall')) {
           child.castShadow = true;
           if (isPlaceing) {
             child.material.color.set('cyan');
+            console.log('changed color for: ', child.name);
           } else {
             child.material.color.set('white');
           }
           walls.push(child);
-          // localWallsGroup.add(child.clone());
-        } else if (child.name.toLowerCase().includes('floor')) {
+        }
+        if (child.name.toLowerCase().includes('floor')) {
           child.receiveShadow = true;
-        } else {
-          // localFurnituresGroup.add(child.clone());
         }
       }
     });
     setWallMeshes(walls);
+    setAllMeshes(allMeshes);
   }, [floorPlan, isPlaceing]);
 
   const onMouseMove = (event: MouseEvent) => {
@@ -67,16 +70,9 @@ const Room = () => {
       setIsPlaceing(true);
       const [firstIntersection] = intersects;
       const newPosition = firstIntersection.point;
-
       let newQuaternion = new Quaternion(0, 0, 0, 1);
       if (firstIntersection.face) {
-        const reference = new Vector3(0, 0, 1);
-        // I use normal difference to caculate the Quaternion for rotation, but it is not working on every mesh
-        newQuaternion = computeAlignmentQuaternion(
-          reference,
-          firstIntersection.face?.normal
-        );
-        // newQuaternion = firstIntersection.object.quaternion;
+        newQuaternion = firstIntersection.object.quaternion;
       }
       if (!isAttached) {
         setProductNewPosition(newPosition);
@@ -90,11 +86,12 @@ const Room = () => {
   useEffect(() => {
     document.addEventListener('mousemove', onMouseMove);
     return () => document.removeEventListener('mousemove', onMouseMove);
-  }, [wallMeshes, isAttached]);
+  }, [wallMeshes, isAttached, allMeshes]);
 
   const onClickHandle = () => {
     if (!isAttached) {
       setIsAttached(true);
+      // set new position and quaternion of a product
       setProducts(
         products.map(product =>
           product.id === currentProductId
@@ -107,12 +104,13 @@ const Room = () => {
         )
       );
     }
-    // console.log('camera: ', camera);
   };
 
   return (
     <>
-      <primitive object={floorPlan.scene} onClick={onClickHandle} />
+      {allMeshes.map((mesh, index) => (
+        <primitive key={index} object={mesh} onClick={onClickHandle} />
+      ))}
     </>
   );
 };
