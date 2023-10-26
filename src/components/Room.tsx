@@ -71,6 +71,7 @@ const Room = () => {
       let newQuaternion = new Quaternion(0, 0, 0, 1);
       if (firstIntersection.face) {
         const reference = new Vector3(0, 0, 1);
+        // I use normal difference to caculate the Quaternion for rotation, but it is not working on every mesh
         newQuaternion = computeAlignmentQuaternion(
           reference,
           firstIntersection.face?.normal

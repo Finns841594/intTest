@@ -1,6 +1,6 @@
 const AppHeader = () => {
   return (
-    <div className="w-full h-8 bg-cyan-500 flex flex-row justify-between align-middle px-2">
+    <div className="w-full h-8 bg-cyan-400 flex flex-row justify-between align-middle px-2">
       <div></div>
       <p className="text-white font-bold my-auto">Products PlayGround</p>
       <div>
