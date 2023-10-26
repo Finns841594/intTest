@@ -1,4 +1,4 @@
-import { Vector3 } from 'three';
+import { Quaternion, Vector3 } from 'three';
 import { useProductContext } from '../contexts/AppContext';
 import { Product } from '../types/innerTypes';
 import { v4 as uuidv4 } from 'uuid';
@@ -20,6 +20,7 @@ const MenuBar = () => {
               .clone()
               .add(new Vector3(1, 0, 1))
           : new Vector3(0, 0, 0),
+      quaternion: new Quaternion(0, 0, 0, 1),
     } as Product;
     setAddAProduct(true);
     setProducts([...products, newProducts]);

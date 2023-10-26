@@ -2,20 +2,34 @@
 import { useGLTF } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
 import { useEffect, useState } from 'react';
-import { Group, Mesh, Quaternion, Vector2, Vector3 } from 'three';
+import {
+  Group,
+  Mesh,
+  MeshBasicMaterial,
+  Quaternion,
+  SphereGeometry,
+  Vector2,
+  Vector3,
+} from 'three';
 import { useProductContext } from '../contexts/AppContext';
 import { computeAlignmentQuaternion } from '../utils/threeJsTools';
 
+const debugSphereGeometry = new SphereGeometry(0.05);
+const debugSphereMaterial = new MeshBasicMaterial({ color: 0xff0000 });
+const debugSphere = new Mesh(debugSphereGeometry, debugSphereMaterial);
+
 const Room = () => {
   const {
+    productNewPosition,
     setProductNewPosition,
+    productNewQuaternion,
     setProductNewQuaternion,
     isPlaceing,
     products,
     setProducts,
     currentProductId,
     setIsPlaceing,
-    productNewPosition,
+
     isAttached,
     setIsAttached,
   } = useProductContext();
@@ -26,8 +40,8 @@ const Room = () => {
 
   useEffect(() => {
     const walls: Mesh[] = [];
-    const localWallsGroup = new Group();
-    const localFurnituresGroup = new Group();
+    // const localWallsGroup = new Group();
+    // const localFurnituresGroup = new Group();
 
     floorPlan.scene.traverse(child => {
       if (child instanceof Mesh) {
@@ -35,17 +49,17 @@ const Room = () => {
           child.visible = false;
         } else if (child.name.toLowerCase().includes('wall')) {
           child.castShadow = true;
-          walls.push(child);
-          localWallsGroup.add(child.clone()); // .add will take this child away and crashes the app, so use .clone() here
-        } else if (child.name.toLowerCase().includes('floor')) {
-          child.receiveShadow = true;
-        } else {
-          localFurnituresGroup.add(child.clone());
           if (isPlaceing) {
             child.material.color.set('aquamarine');
           } else {
             child.material.color.set('white');
           }
+          walls.push(child);
+          // localWallsGroup.add(child.clone());
+        } else if (child.name.toLowerCase().includes('floor')) {
+          child.receiveShadow = true;
+        } else {
+          // localFurnituresGroup.add(child.clone());
         }
       }
     });
@@ -63,14 +77,18 @@ const Room = () => {
       setIsPlaceing(true);
       const [firstIntersection] = intersects;
       const newPosition = firstIntersection.point;
-      let newQuaternion = new Quaternion(0, 0, 0, 0);
+
+      debugSphere.position.copy(newPosition);
+
+      let newQuaternion = new Quaternion(0, 0, 0, 1);
       if (firstIntersection.face) {
-        console.log(firstIntersection.face.normal);
+        console.log(firstIntersection.object.quaternion);
         const reference = new Vector3(0, 0, 1);
         newQuaternion = computeAlignmentQuaternion(
           reference,
           firstIntersection.face?.normal
         );
+        // newQuaternion = firstIntersection.object.quaternion;
       }
       if (!isAttached) {
         setProductNewPosition(newPosition);
@@ -92,7 +110,11 @@ const Room = () => {
       setProducts(
         products.map(product =>
           product.id === currentProductId
-            ? { ...product, position: productNewPosition }
+            ? {
+                ...product,
+                position: productNewPosition,
+                quaternion: productNewQuaternion,
+              }
             : product
         )
       );
@@ -101,6 +123,7 @@ const Room = () => {
 
   return (
     <>
+      <primitive object={debugSphere} />
       <primitive object={floorPlan.scene} onClick={onClickHandle} />
     </>
   );

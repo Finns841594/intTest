@@ -41,7 +41,7 @@ export const ProductProvider: React.FC<ProductProviderProps> = ({
     new Vector3(0, 0, 0)
   );
   const [productNewQuaternion, setProductNewQuaternion] = useState(
-    new Quaternion(0, 0, 0, 0)
+    new Quaternion(0, 0, 0, 1)
   );
   const [products, setProducts] = useState([] as Product[]);
   const [isAttached, setIsAttached] = useState(true);

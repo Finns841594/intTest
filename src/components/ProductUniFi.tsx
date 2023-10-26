@@ -9,6 +9,7 @@ interface ProductUniFiProp {
 
 const ProductUniFi: React.FC<ProductUniFiProp> = ({ productInfo }) => {
   const product = useGLTF(productInfo.modelPath);
+  console.log('product quaternion: ', productInfo.quaternion);
   const {
     productNewPosition,
     productNewQuaternion,
@@ -48,11 +49,11 @@ const ProductUniFi: React.FC<ProductUniFiProp> = ({ productInfo }) => {
       )}
       quaternion={
         isAttached
-          ? undefined // Use the default quaternion
+          ? productInfo.quaternion
           : currentProductId === productInfo.id
           ? productNewQuaternion
-          : undefined
-      } // Use the default quaternion
+          : productInfo.quaternion
+      }
       onClick={onProductClick}
     />
   );
