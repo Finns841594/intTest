@@ -4,12 +4,13 @@ import {
   Html,
   useProgress,
 } from '@react-three/drei';
-import { Suspense } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import Room from './Room';
 import ProductUniFi from './ProductUniFi';
 
 import { useProductContext } from '../contexts/AppContext';
 import { Canvas } from '@react-three/fiber';
+import { PerspectiveCamera, Vector3 } from 'three';
 
 const Loader = () => {
   const { progress } = useProgress();
@@ -24,12 +25,10 @@ const MainScene = () => {
       <Canvas
         style={{ width: '100%', height: '100%' }}
         camera={{
-          position: [3.3, 2.5, 5.6],
           fov: 70,
-          quaternion: [
-            -0.0013015120050624478, 0.24311103747814175, 0.00032619869798407937,
-            0.969997537686159,
-          ],
+          position: [3.5, 2.5, 6],
+          quaternion: [0, 0, 0, 1],
+          rotation: [0, 0, 0],
         }}
         shadows
       >

@@ -25,6 +25,8 @@ interface ProductContextType {
   setCurrentProductId: React.Dispatch<React.SetStateAction<UUID | undefined>>;
   isCheckingProduct: boolean;
   setIsCheckingProduct: React.Dispatch<React.SetStateAction<boolean>>;
+  isLocatingProduct: boolean;
+  setIsLocatingProduct: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ProductContext = createContext<ProductContextType | null>(null);
@@ -52,6 +54,7 @@ export const ProductProvider: React.FC<ProductProviderProps> = ({
   const [AddAProduct, setAddAProduct] = useState(false);
   const [currentProductId, setCurrentProductId] = useState<UUID | undefined>();
   const [isCheckingProduct, setIsCheckingProduct] = useState(false);
+  const [isLocatingProduct, setIsLocatingProduct] = useState(false);
 
   return (
     <ProductContext.Provider
@@ -72,6 +75,8 @@ export const ProductProvider: React.FC<ProductProviderProps> = ({
         setCurrentProductId,
         isCheckingProduct,
         setIsCheckingProduct,
+        isLocatingProduct,
+        setIsLocatingProduct,
       }}
     >
       {children}

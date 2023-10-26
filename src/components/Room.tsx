@@ -86,7 +86,6 @@ const Room = () => {
 
       let newQuaternion = new Quaternion(0, 0, 0, 1);
       if (firstIntersection.face) {
-        console.log(firstIntersection.object.quaternion);
         const reference = new Vector3(0, 0, 1);
         newQuaternion = computeAlignmentQuaternion(
           reference,
@@ -123,7 +122,7 @@ const Room = () => {
         )
       );
     }
-    console.log('camera: ', camera);
+    // console.log('camera: ', camera);
   };
 
   return (

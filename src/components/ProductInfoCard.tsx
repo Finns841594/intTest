@@ -6,17 +6,30 @@ interface ProductInfoProp {
 }
 
 const ProductInfoCard: React.FC<ProductInfoProp> = ({ productInfo }) => {
-  const { setIsCheckingProduct, setCurrentProductId } = useProductContext();
+  const {
+    setIsCheckingProduct,
+    setCurrentProductId,
+    setProducts,
+    products,
+    setIsLocatingProduct,
+  } = useProductContext();
   const handleMouseEnter = () => {
     setIsCheckingProduct(true);
     setCurrentProductId(productInfo.id);
-    console.log('current in id: ', productInfo.id);
   };
 
   const handleMouseLeave = () => {
     setIsCheckingProduct(false);
     setCurrentProductId('XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX');
-    console.log('out');
+  };
+
+  const onDeleteHandle = () => {
+    setProducts(products.filter(product => product.id !== productInfo.id));
+  };
+
+  const onLocateHandle = () => {
+    setIsLocatingProduct(true);
+    setCurrentProductId(productInfo.id);
   };
   return (
     <div
@@ -26,8 +39,8 @@ const ProductInfoCard: React.FC<ProductInfoProp> = ({ productInfo }) => {
     >
       <h3>{productInfo.name}</h3>
       <div className="flex flex-row justify-between gap-3">
-        <button>Locate</button>
-        <button>Delete</button>
+        <button onClick={onLocateHandle}>Locate</button>
+        <button onClick={onDeleteHandle}>Delete</button>
       </div>
     </div>
   );
