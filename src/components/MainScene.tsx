@@ -23,9 +23,10 @@ const MainScene = () => {
     <>
       <Canvas
         style={{ width: '100%', height: '100%' }}
-        camera={{ position: [6, 8, 10] }}
+        camera={{ position: [6, 8, 10], fov: 70 }}
         shadows
       >
+        <axesHelper args={[10]} />
         <ambientLight />
         <pointLight
           position={[10, 8, 10]}

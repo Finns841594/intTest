@@ -1,4 +1,3 @@
-import { Canvas } from '@react-three/fiber';
 import MainScene from './components/MainScene';
 import MenuBar from './components/MenuBar';
 import { ProductProvider } from './contexts/AppContext';

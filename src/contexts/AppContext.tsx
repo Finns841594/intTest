@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useContext, useState } from 'react';
-import { Vector3 } from 'three';
+import { Quaternion, Vector3 } from 'three';
 import { Product } from '../types/innerTypes';
 import { UUID } from 'crypto';
 
@@ -10,6 +10,8 @@ interface ProductProviderProps {
 interface ProductContextType {
   productNewPosition: Vector3;
   setProductNewPosition: React.Dispatch<React.SetStateAction<Vector3>>;
+  productNewQuaternion: Quaternion;
+  setProductNewQuaternion: React.Dispatch<React.SetStateAction<Quaternion>>;
   products: Product[];
   setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
   isPlaceing: boolean;
@@ -38,6 +40,9 @@ export const ProductProvider: React.FC<ProductProviderProps> = ({
   const [productNewPosition, setProductNewPosition] = useState(
     new Vector3(0, 0, 0)
   );
+  const [productNewQuaternion, setProductNewQuaternion] = useState(
+    new Quaternion(0, 0, 0, 0)
+  );
   const [products, setProducts] = useState([] as Product[]);
   const [isAttached, setIsAttached] = useState(true);
   const [isPlaceing, setIsPlaceing] = useState(false);
@@ -49,6 +54,8 @@ export const ProductProvider: React.FC<ProductProviderProps> = ({
       value={{
         productNewPosition,
         setProductNewPosition,
+        productNewQuaternion,
+        setProductNewQuaternion,
         products,
         setProducts,
         isAttached,

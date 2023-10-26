@@ -33,14 +33,14 @@ const MenuBar = () => {
   return (
     <>
       <div className="border p-3">
-        {/* <Canvas
+        <Canvas
           style={{ width: 100, height: 100 }}
           camera={{ position: [0, 0, 1], fov: 70 }}
         >
           <ambientLight />
           <ProductUniFi productInfo={exampleProductUniFi} />
           <OrbitControls makeDefault />
-        </Canvas> */}
+        </Canvas>
         <button onClick={addProductHandle}>Add a product</button>
       </div>
     </>

@@ -11,6 +11,7 @@ const ProductUniFi: React.FC<ProductUniFiProp> = ({ productInfo }) => {
   const product = useGLTF(productInfo.modelPath);
   const {
     productNewPosition,
+    productNewQuaternion,
     setIsAttached,
     isAttached,
     currentProductId,
@@ -45,6 +46,13 @@ const ProductUniFi: React.FC<ProductUniFiProp> = ({ productInfo }) => {
           ? productNewPosition
           : productInfo.position
       )}
+      quaternion={
+        isAttached
+          ? undefined // Use the default quaternion
+          : currentProductId === productInfo.id
+          ? productNewQuaternion
+          : undefined
+      } // Use the default quaternion
       onClick={onProductClick}
     />
   );

@@ -2,12 +2,14 @@
 import { useGLTF } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
 import { useEffect, useState } from 'react';
-import { Group, Mesh, Vector2 } from 'three';
+import { Group, Mesh, Quaternion, Vector2, Vector3 } from 'three';
 import { useProductContext } from '../contexts/AppContext';
+import { computeAlignmentQuaternion } from '../utils/threeJsTools';
 
 const Room = () => {
   const {
     setProductNewPosition,
+    setProductNewQuaternion,
     isPlaceing,
     products,
     setProducts,
@@ -61,8 +63,18 @@ const Room = () => {
       setIsPlaceing(true);
       const [firstIntersection] = intersects;
       const newPosition = firstIntersection.point;
+      let newQuaternion = new Quaternion(0, 0, 0, 0);
+      if (firstIntersection.face) {
+        console.log(firstIntersection.face.normal);
+        const reference = new Vector3(0, 0, 1);
+        newQuaternion = computeAlignmentQuaternion(
+          reference,
+          firstIntersection.face?.normal
+        );
+      }
       if (!isAttached) {
         setProductNewPosition(newPosition);
+        setProductNewQuaternion(newQuaternion);
       }
     } else {
       setIsPlaceing(false);
