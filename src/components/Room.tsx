@@ -32,11 +32,19 @@ const Room = () => {
     floorPlan.scene.traverse(child => {
       if (child instanceof Mesh) {
         allMeshes.push(child);
+        console.log('refreshing');
         if (child.name.toLowerCase().includes('ceilingnode')) {
-          // child.visible = false;
+          child.material.color.set('white');
+          // Hide the ceiling is user is putting products from above
+          if (camera.position.y > 1.5) {
+            child.visible = false;
+          } else {
+            child.visible = true;
+          }
         }
         if (child.name.toLowerCase().includes('wall')) {
           child.castShadow = true;
+          // Attempt to color all the walls, but colored the furnitures as well, have no idea why...
           if (isPlaceing) {
             child.material.color.set('cyan');
             console.log('changed color for: ', child.name);
@@ -52,7 +60,7 @@ const Room = () => {
     });
     setWallMeshes(walls);
     setAllMeshes(allMeshes);
-  }, [floorPlan, isPlaceing]);
+  }, [floorPlan, isPlaceing, camera]);
 
   const onMouseMove = (event: MouseEvent) => {
     const canvas = event.target as HTMLCanvasElement;
