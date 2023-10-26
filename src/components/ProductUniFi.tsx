@@ -1,8 +1,6 @@
 import { Box, useGLTF } from '@react-three/drei';
 import { useProductContext } from '../contexts/AppContext';
 import { Product } from '../types/innerTypes';
-import { Group, Mesh, Vector3 } from 'three';
-import { useEffect } from 'react';
 
 interface ProductUniFiProp {
   productInfo: Product;
@@ -26,16 +24,6 @@ const ProductUniFi: React.FC<ProductUniFiProp> = ({ productInfo }) => {
   }
 
   let highligtColor = 'white';
-
-  // product.scene.traverse(child => {
-  //   if (child instanceof Mesh) {
-  //     if (isCheckingProduct && currentProductId === productInfo.id) {
-  //       child.material.color.set('aquamarine');
-  //     } else {
-  //       child.material.color.set('white');
-  //     }
-  //   }
-  // });
 
   if (isCheckingProduct && currentProductId === productInfo.id) {
     highligtColor = 'aquamarine';
@@ -70,6 +58,7 @@ const ProductUniFi: React.FC<ProductUniFiProp> = ({ productInfo }) => {
         }
         onClick={onProductClick}
       />
+      {/* Box below is for highligting when select from product lists */}
       <Box
         position={
           isAttached

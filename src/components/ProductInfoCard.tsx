@@ -25,7 +25,10 @@ const ProductInfoCard: React.FC<ProductInfoProp> = ({ productInfo }) => {
       className="border"
     >
       <h3>{productInfo.name}</h3>
-      <p>{productInfo.id}</p>
+      <div className="flex flex-row justify-between gap-3">
+        <button>Locate</button>
+        <button>Delete</button>
+      </div>
     </div>
   );
 };

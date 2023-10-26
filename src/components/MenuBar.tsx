@@ -3,8 +3,8 @@ import { useProductContext } from '../contexts/AppContext';
 import { Product } from '../types/innerTypes';
 import { v4 as uuidv4 } from 'uuid';
 import { Canvas } from '@react-three/fiber';
-import ProductUniFi from './ProductUniFi';
 import { OrbitControls } from '@react-three/drei';
+import ProductUniFiPreview from './ProductUniFiPreview';
 
 const MenuBar = () => {
   const {
@@ -54,7 +54,7 @@ const MenuBar = () => {
               color="#fff"
               castShadow
             />
-            <ProductUniFi productInfo={exampleProductUniFi} />
+            <ProductUniFiPreview productInfo={exampleProductUniFi} />
             <OrbitControls makeDefault />
           </Canvas>
           <button onClick={addProductHandle}>Add to scene</button>

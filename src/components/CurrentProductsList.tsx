@@ -5,7 +5,7 @@ const CurrentProductsList = () => {
   const { products } = useProductContext();
   return (
     <>
-      <div>
+      <div className="flex flex-row gap-5 align-start ">
         {products.length > 0 &&
           products.map(product => (
             <ProductInfoCard key={product.id} productInfo={product} />
