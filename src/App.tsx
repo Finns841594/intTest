@@ -7,12 +7,11 @@ function App() {
   return (
     <ProductProvider>
       <div className="h-screen bg-slate-100 flex flex-col items-center">
-        <h1>View</h1>
-        <MenuBar />
         <div className="w-10/12 h-4/6">
+          <MenuBar />
           <MainScene />
+          <CurrentProductsList />
         </div>
-        <CurrentProductsList />
       </div>
     </ProductProvider>
   );

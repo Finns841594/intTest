@@ -7,4 +7,5 @@ export type Product = {
   modelPath: string;
   position: Vector3;
   quaternion: Quaternion;
+  introduction?: string;
 };

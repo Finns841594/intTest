@@ -1,67 +1,31 @@
-import { Quaternion, Vector3 } from 'three';
 import { useProductContext } from '../contexts/AppContext';
-import { Product } from '../types/innerTypes';
-import { v4 as uuidv4 } from 'uuid';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
-import ProductUniFiPreview from './ProductUniFiPreview';
+import NewProductCard from './NewProductCard';
+import { productSamples } from '../data/initialData';
 
 const MenuBar = () => {
-  const {
-    setAddAProduct,
-    setProducts,
-    products,
-    setIsAttached,
-    setCurrentProductId,
-  } = useProductContext();
+  const { currentProduct } = useProductContext();
 
-  const addProductHandle = () => {
-    const newProducts = {
-      id: uuidv4(),
-      name: 'UniFi',
-      modelPath: 'products/UniFi_AP_AC/UniFi_AP_AC_3D_model.gltf',
-      position:
-        products.length > 0
-          ? products[products.length - 1].position
-              .clone()
-              .add(new Vector3(1, 0, 1))
-          : new Vector3(0, 0, 0),
-      quaternion: new Quaternion(0, 0, 0, 1),
-    } as Product;
-    setAddAProduct(true);
-    setProducts([...products, newProducts]);
-    setCurrentProductId(newProducts.id);
-    setIsAttached(false);
-  };
-  const exampleProductUniFi = {
-    id: uuidv4(),
-    name: 'UniFi',
-    modelPath: 'products/UniFi_AP_AC/UniFi_AP_AC_3D_model.gltf',
-    position: new Vector3(0, 0, 0),
-  } as Product;
   return (
-    <>
-      <div className="flex flex-row">
-        <div className="border p-3 hover:border-cyan-500">
-          <Canvas
-            style={{ width: 100, height: 100 }}
-            camera={{ position: [0, 0, 1], fov: 70 }}
-          >
-            <ambientLight />
-            <pointLight
-              position={[1, 1, 1]}
-              intensity={20}
-              color="#fff"
-              castShadow
-            />
-            <ProductUniFiPreview productInfo={exampleProductUniFi} />
-            <OrbitControls makeDefault />
-          </Canvas>
-          <button onClick={addProductHandle}>Add to scene</button>
-        </div>
-        <div>product info</div>
+    <div className="my-2 flex flex-row justify-between">
+      <div className="flex flex-row gap-3">
+        {productSamples.map(sample => (
+          <NewProductCard key={sample.id} productInfo={sample} />
+        ))}
       </div>
-    </>
+
+      <div className="w-2/6 p-3 flex flex-col">
+        <div className="border-b-2 border-cyan-400 my-1 pb-1">
+          <p className=" text-lg font-bold ">{currentProduct?.name}</p>
+        </div>
+        <p className="font-light text-sm">
+          {
+            productSamples.find(
+              product => product.name === currentProduct?.name
+            )?.introduction
+          }
+        </p>
+      </div>
+    </div>
   );
 };
 

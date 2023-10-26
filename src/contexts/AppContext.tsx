@@ -23,6 +23,8 @@ interface ProductContextType {
   setAddAProduct: React.Dispatch<React.SetStateAction<boolean>>;
   currentProductId: UUID | undefined;
   setCurrentProductId: React.Dispatch<React.SetStateAction<UUID | undefined>>;
+  currentProduct: Product | undefined;
+  setCurrentProduct: React.Dispatch<React.SetStateAction<Product | undefined>>;
   isCheckingProduct: boolean;
   setIsCheckingProduct: React.Dispatch<React.SetStateAction<boolean>>;
   isLocatingProduct: boolean;
@@ -53,6 +55,7 @@ export const ProductProvider: React.FC<ProductProviderProps> = ({
   const [isPlaceing, setIsPlaceing] = useState(false);
   const [AddAProduct, setAddAProduct] = useState(false);
   const [currentProductId, setCurrentProductId] = useState<UUID | undefined>();
+  const [currentProduct, setCurrentProduct] = useState<Product | undefined>();
   const [isCheckingProduct, setIsCheckingProduct] = useState(false);
   const [isLocatingProduct, setIsLocatingProduct] = useState(false);
 
@@ -73,6 +76,8 @@ export const ProductProvider: React.FC<ProductProviderProps> = ({
         setAddAProduct,
         currentProductId,
         setCurrentProductId,
+        currentProduct,
+        setCurrentProduct,
         isCheckingProduct,
         setIsCheckingProduct,
         isLocatingProduct,

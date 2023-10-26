@@ -1,4 +1,4 @@
-import { Vector3 } from 'three';
+import { Quaternion, Vector3 } from 'three';
 import { Product } from '../types/innerTypes';
 
 export const initialProducts = [
@@ -25,3 +25,23 @@ export const initialProducts = [
     quaternion: [0, 0, 0, 1],
   },
 ] as unknown as Product[];
+
+export const productSamples = [
+  {
+    id: '11111111-2222-3333-4444-b2a6ca3f5811',
+    name: 'UniFi',
+    modelPath: 'products/UniFi_AP_AC/UniFi_AP_AC_3D_model.gltf',
+    position: new Vector3(0, 0, 0),
+    quaternion: new Quaternion(0, 0, 0, 1),
+    introduction:
+      'High-performance, ceiling-mounted WiFi 6E access point designed to provide seamless, multi-band coverage within high-density client environments.',
+  },
+  {
+    id: '11111111-2222-3333-5555-b2a6ca3f5811',
+    name: 'UniFi_C',
+    modelPath: 'products/UniFi_AP_AC_COS/UniFi_AP_AC_COS.gltf',
+    position: new Vector3(0, 0, 0),
+    quaternion: new Quaternion(0, 0, 0, 1),
+    introduction: 'Bring more colour to your life!',
+  },
+] as Product[];

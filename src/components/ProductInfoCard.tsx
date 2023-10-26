@@ -13,6 +13,7 @@ const ProductInfoCard: React.FC<ProductInfoProp> = ({ productInfo }) => {
     products,
     setIsLocatingProduct,
   } = useProductContext();
+
   const handleMouseEnter = () => {
     setIsCheckingProduct(true);
     setCurrentProductId(productInfo.id);
@@ -39,7 +40,7 @@ const ProductInfoCard: React.FC<ProductInfoProp> = ({ productInfo }) => {
     >
       <h3>{productInfo.name}</h3>
       <div className="flex flex-row justify-between gap-3">
-        <button onClick={onLocateHandle}>Locate</button>
+        {/* <button onClick={onLocateHandle}>Locate</button> */}
         <button onClick={onDeleteHandle}>Delete</button>
       </div>
     </div>

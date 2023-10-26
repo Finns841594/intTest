@@ -38,3 +38,8 @@ export const limitProductHeigt = (vec: Vector3): Vector3 => {
   const limitedHeigt = Math.max(0.5, Math.min(vec.y, 2.8));
   return new Vector3(vec.x, limitedHeigt, vec.z);
 };
+
+export const getFileExtension = (path: string): string | null => {
+  const match = path.match(/\.[0-9a-z]+$/i);
+  return match ? match[0] : null;
+};
