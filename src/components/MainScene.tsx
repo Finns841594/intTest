@@ -23,7 +23,14 @@ const MainScene = () => {
     <>
       <Canvas
         style={{ width: '100%', height: '100%' }}
-        camera={{ position: [6, 8, 10], fov: 70 }}
+        camera={{
+          position: [3.3, 2.5, 5.6],
+          fov: 70,
+          quaternion: [
+            -0.0013015120050624478, 0.24311103747814175, 0.00032619869798407937,
+            0.969997537686159,
+          ],
+        }}
         shadows
       >
         <axesHelper args={[10]} />

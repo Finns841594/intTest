@@ -5,7 +5,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { Canvas } from '@react-three/fiber';
 import ProductUniFi from './ProductUniFi';
 import { OrbitControls } from '@react-three/drei';
-import { FlakesTexture } from 'three-stdlib';
 
 const MenuBar = () => {
   const {
@@ -44,15 +43,21 @@ const MenuBar = () => {
     <>
       <div className="flex flex-row">
         <div className="border p-3 hover:border-cyan-500">
-          {/* <Canvas
-          style={{ width: 100, height: 100 }}
-          camera={{ position: [0, 0, 1], fov: 70 }}
-        >
-          <ambientLight />
-          <ProductUniFi productInfo={exampleProductUniFi} />
-          <OrbitControls makeDefault />
-        </Canvas> */}
-          <button onClick={addProductHandle}>Add a product</button>
+          <Canvas
+            style={{ width: 100, height: 100 }}
+            camera={{ position: [0, 0, 1], fov: 70 }}
+          >
+            <ambientLight />
+            <pointLight
+              position={[1, 1, 1]}
+              intensity={20}
+              color="#fff"
+              castShadow
+            />
+            <ProductUniFi productInfo={exampleProductUniFi} />
+            <OrbitControls makeDefault />
+          </Canvas>
+          <button onClick={addProductHandle}>Add to scene</button>
         </div>
         <div>product info</div>
       </div>

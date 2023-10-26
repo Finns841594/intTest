@@ -66,8 +66,13 @@ const Room = () => {
   }, [floorPlan, isPlaceing]);
 
   const onMouseMove = (event: MouseEvent) => {
-    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    const canvas = event.target as HTMLCanvasElement;
+    if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
+    mouse.x = (mouseX / rect.width) * 2 - 1;
+    mouse.y = -(mouseY / rect.height) * 2 + 1;
 
     raycaster.setFromCamera(mouse, camera);
     const intersects = raycaster.intersectObjects(wallMeshes);
@@ -118,7 +123,7 @@ const Room = () => {
         )
       );
     }
-    console.log('products: ', products);
+    console.log('camera: ', camera);
   };
 
   return (
