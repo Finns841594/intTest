@@ -38,10 +38,20 @@ export const productSamples = [
   },
   {
     id: '11111111-2222-3333-5555-b2a6ca3f5811',
-    name: 'UniFi_C',
-    modelPath: 'products/UniFi_AP_AC_COS/UniFi_AP_AC_COS.gltf',
+    name: 'UniFi Blue',
+    modelPath: 'products/UniFi_AP_AC_COS/UniFi_AP_AC_Blue.gltf',
     position: new Vector3(0, 0, 0),
     quaternion: new Quaternion(0, 0, 0, 1),
-    introduction: 'Bring more colour to your life!',
+    introduction:
+      'Same good product but now with the selected color for your awsome tech taste! Season limited waving sky blue color!',
+  },
+  {
+    id: '11111111-2222-3333-6666-b2a6ca3f5811',
+    name: 'UniFi Blue',
+    modelPath: 'products/UniFi_AP_AC_COS/UniFi_AP_AC_Yellow.gltf',
+    position: new Vector3(0, 0, 0),
+    quaternion: new Quaternion(0, 0, 0, 1),
+    introduction:
+      'Same good product but now with the selected color for your awsome tech taste! Season limited summer shiny yellow color!',
   },
 ] as Product[];

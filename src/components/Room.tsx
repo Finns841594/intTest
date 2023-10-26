@@ -2,20 +2,9 @@
 import { useGLTF } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
 import { useEffect, useState } from 'react';
-import {
-  Mesh,
-  MeshBasicMaterial,
-  Quaternion,
-  SphereGeometry,
-  Vector2,
-  Vector3,
-} from 'three';
+import { Mesh, Quaternion, Vector2, Vector3 } from 'three';
 import { useProductContext } from '../contexts/AppContext';
 import { computeAlignmentQuaternion } from '../utils/threeJsTools';
-
-const debugSphereGeometry = new SphereGeometry(0.05);
-const debugSphereMaterial = new MeshBasicMaterial({ color: 0xff0000 });
-const debugSphere = new Mesh(debugSphereGeometry, debugSphereMaterial);
 
 const Room = () => {
   const {
@@ -28,7 +17,6 @@ const Room = () => {
     setProducts,
     currentProductId,
     setIsPlaceing,
-
     isAttached,
     setIsAttached,
   } = useProductContext();
@@ -39,8 +27,6 @@ const Room = () => {
 
   useEffect(() => {
     const walls: Mesh[] = [];
-    // const localWallsGroup = new Group();
-    // const localFurnituresGroup = new Group();
 
     floorPlan.scene.traverse(child => {
       if (child instanceof Mesh) {
@@ -81,8 +67,6 @@ const Room = () => {
       setIsPlaceing(true);
       const [firstIntersection] = intersects;
       const newPosition = firstIntersection.point;
-
-      debugSphere.position.copy(newPosition);
 
       let newQuaternion = new Quaternion(0, 0, 0, 1);
       if (firstIntersection.face) {
@@ -127,7 +111,6 @@ const Room = () => {
 
   return (
     <>
-      <primitive object={debugSphere} />
       <primitive object={floorPlan.scene} onClick={onClickHandle} />
     </>
   );

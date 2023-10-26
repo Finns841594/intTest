@@ -2,7 +2,7 @@ import { ReactNode, createContext, useContext, useState } from 'react';
 import { Quaternion, Vector3 } from 'three';
 import { Product } from '../types/innerTypes';
 import { UUID } from 'crypto';
-import { initialProducts } from '../data/initialData';
+import { initialProducts, productSamples } from '../data/initialData';
 
 interface ProductProviderProps {
   children: ReactNode;
@@ -24,7 +24,7 @@ interface ProductContextType {
   currentProductId: UUID | undefined;
   setCurrentProductId: React.Dispatch<React.SetStateAction<UUID | undefined>>;
   currentProduct: Product | undefined;
-  setCurrentProduct: React.Dispatch<React.SetStateAction<Product | undefined>>;
+  setCurrentProduct: React.Dispatch<React.SetStateAction<Product>>;
   isCheckingProduct: boolean;
   setIsCheckingProduct: React.Dispatch<React.SetStateAction<boolean>>;
   isLocatingProduct: boolean;
@@ -55,7 +55,9 @@ export const ProductProvider: React.FC<ProductProviderProps> = ({
   const [isPlaceing, setIsPlaceing] = useState(false);
   const [AddAProduct, setAddAProduct] = useState(false);
   const [currentProductId, setCurrentProductId] = useState<UUID | undefined>();
-  const [currentProduct, setCurrentProduct] = useState<Product | undefined>();
+  const [currentProduct, setCurrentProduct] = useState<Product>(
+    productSamples[0]
+  );
   const [isCheckingProduct, setIsCheckingProduct] = useState(false);
   const [isLocatingProduct, setIsLocatingProduct] = useState(false);
 

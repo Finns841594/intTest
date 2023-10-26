@@ -6,7 +6,7 @@ const MenuBar = () => {
   const { currentProduct } = useProductContext();
 
   return (
-    <div className="my-2 flex flex-row justify-between">
+    <div className="h-40 my-2 flex flex-row justify-between ">
       <div className="flex flex-row gap-3">
         {productSamples.map(sample => (
           <NewProductCard key={sample.id} productInfo={sample} />

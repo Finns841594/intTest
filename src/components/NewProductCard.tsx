@@ -51,7 +51,7 @@ const NewProductCard = ({ productInfo }: NewProductCardProp) => {
     <div
       onMouseEnter={handleMouseEnter}
       // onMouseLeave={handleMouseLeave}
-      className="border rounded-md p-2 hover:border-cyan-500"
+      className="h-36 border rounded-md px-2 hover:border-cyan-500 hover:border-2"
     >
       <Canvas
         style={{ width: 100, height: 100 }}
