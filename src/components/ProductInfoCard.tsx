@@ -36,12 +36,17 @@ const ProductInfoCard: React.FC<ProductInfoProp> = ({ productInfo }) => {
     <div
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="border"
+      className="border-2 rounded-md w-28 p-2 hover:border-cyan-500 hover:border-2"
     >
-      <h3>{productInfo.name}</h3>
-      <div className="flex flex-row justify-between gap-3">
+      <p className="px-1 font-bold">{productInfo.name}</p>
+      <div className="flex flex-row justify-between gap-3 mt-1">
         {/* <button onClick={onLocateHandle}>Locate</button> */}
-        <button onClick={onDeleteHandle}>Delete</button>
+        <button
+          className="w-24 border border-red-500 rounded text-red-500 px-2 hover:bg-red-500 hover:text-white"
+          onClick={onDeleteHandle}
+        >
+          Delete
+        </button>
       </div>
     </div>
   );

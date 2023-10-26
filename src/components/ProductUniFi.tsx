@@ -26,7 +26,7 @@ const ProductUniFi: React.FC<ProductUniFiProp> = ({ productInfo }) => {
   let highligtColor = 'white';
 
   if (isCheckingProduct && currentProductId === productInfo.id) {
-    highligtColor = 'aquamarine';
+    highligtColor = 'cyan';
   } else {
     highligtColor = 'white';
   }

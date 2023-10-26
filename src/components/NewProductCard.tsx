@@ -51,23 +51,30 @@ const NewProductCard = ({ productInfo }: NewProductCardProp) => {
     <div
       onMouseEnter={handleMouseEnter}
       // onMouseLeave={handleMouseLeave}
-      className="h-36 border rounded-md px-2 hover:border-cyan-500 hover:border-2"
+      className="h-36 border-2 rounded-md px-2 hover:border-cyan-500 hover:border-2 flex flex-col adjust-items-center"
     >
-      <Canvas
-        style={{ width: 100, height: 100 }}
-        camera={{ position: [0, 0, 1], fov: 70 }}
+      <div className="mx-auto">
+        <Canvas
+          style={{ width: 100, height: 100 }}
+          camera={{ position: [0, 0, 1], fov: 70 }}
+        >
+          <ambientLight />
+          <pointLight
+            position={[1, 1, 1]}
+            intensity={20}
+            color="#fff"
+            castShadow
+          />
+          <ProductUniFiPreview productInfo={productInfo} />
+          <OrbitControls makeDefault />
+        </Canvas>
+      </div>
+      <button
+        onClick={addProductHandle}
+        className="mt-1 border border-cyan-500 rounded text-cyan-500 px-2 hover:bg-cyan-500 hover:text-white"
       >
-        <ambientLight />
-        <pointLight
-          position={[1, 1, 1]}
-          intensity={20}
-          color="#fff"
-          castShadow
-        />
-        <ProductUniFiPreview productInfo={productInfo} />
-        <OrbitControls makeDefault />
-      </Canvas>
-      <button onClick={addProductHandle}>Add to scene</button>
+        Add to scene
+      </button>
     </div>
   );
 };

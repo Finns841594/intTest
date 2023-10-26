@@ -35,7 +35,7 @@ const Room = () => {
         } else if (child.name.toLowerCase().includes('wall')) {
           child.castShadow = true;
           if (isPlaceing) {
-            child.material.color.set('aquamarine');
+            child.material.color.set('cyan');
           } else {
             child.material.color.set('white');
           }
