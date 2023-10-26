@@ -4,12 +4,13 @@ import {
   Html,
   useProgress,
 } from '@react-three/drei';
-import { Suspense } from 'react';
+import { Suspense, useRef } from 'react';
 import Room from './Room';
 import ProductUniFi from './ProductUniFi';
 
-import { useProductContext } from '../contexts/AppContext';
+import { SceneContext, useProductContext } from '../contexts/AppContext';
 import { Canvas } from '@react-three/fiber';
+import { Scene } from 'three';
 
 const Loader = () => {
   const { progress } = useProgress();
@@ -18,6 +19,7 @@ const Loader = () => {
 
 const MainScene = () => {
   const { products } = useProductContext();
+  const scene = useRef<Scene>(null);
 
   return (
     <>
@@ -26,22 +28,26 @@ const MainScene = () => {
         camera={{ position: [6, 8, 10], fov: 70 }}
         shadows
       >
-        <axesHelper args={[10]} />
-        <ambientLight />
-        <pointLight
-          position={[10, 8, 10]}
-          intensity={100}
-          color="#fff"
-          castShadow
-        />
-        <Suspense fallback={<Loader />}>
-          <Room />
-          {products.map(product => (
-            <ProductUniFi key={product.id} productInfo={product} />
-          ))}
-          <OrbitControls makeDefault />
-          <Environment background={true} blur={0.5} preset={'sunset'} />
-        </Suspense>
+        <SceneContext.Provider value={scene}>
+          <scene ref={scene}>
+            <axesHelper args={[10]} />
+            <ambientLight />
+            <pointLight
+              position={[10, 8, 10]}
+              intensity={100}
+              color="#fff"
+              castShadow
+            />
+            <Suspense fallback={<Loader />}>
+              <Room />
+              {products.map(product => (
+                <ProductUniFi key={product.id} productInfo={product} />
+              ))}
+              <OrbitControls makeDefault />
+              <Environment background={true} blur={0.5} preset={'sunset'} />
+            </Suspense>
+          </scene>
+        </SceneContext.Provider>
       </Canvas>
     </>
   );

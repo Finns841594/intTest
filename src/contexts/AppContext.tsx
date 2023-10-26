@@ -1,5 +1,11 @@
-import { ReactNode, createContext, useContext, useState } from 'react';
-import { Quaternion, Vector3 } from 'three';
+import {
+  ReactNode,
+  RefObject,
+  createContext,
+  useContext,
+  useState,
+} from 'react';
+import { Quaternion, Scene, Vector3 } from 'three';
 import { Product } from '../types/innerTypes';
 import { UUID } from 'crypto';
 
@@ -27,6 +33,8 @@ interface ProductContextType {
 }
 
 const ProductContext = createContext<ProductContextType | null>(null);
+
+export const SceneContext = createContext<RefObject<Scene> | null>(null);
 
 export const useProductContext = () => {
   const context = useContext(ProductContext);
