@@ -1,3 +1,4 @@
+import CurrentProductsList from './components/CurrentProductsList';
 import MainScene from './components/MainScene';
 import MenuBar from './components/MenuBar';
 import { ProductProvider } from './contexts/AppContext';
@@ -11,8 +12,7 @@ function App() {
         <div className="w-10/12 h-4/6">
           <MainScene />
         </div>
-        <h1>CurrentProductsList</h1>
-        {/* <CurrentProductsList /> */}
+        <CurrentProductsList />
       </div>
     </ProductProvider>
   );

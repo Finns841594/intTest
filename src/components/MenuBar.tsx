@@ -42,8 +42,9 @@ const MenuBar = () => {
   } as Product;
   return (
     <>
-      <div className="border p-3">
-        {/* <Canvas
+      <div className="flex flex-row">
+        <div className="border p-3 hover:border-cyan-500">
+          {/* <Canvas
           style={{ width: 100, height: 100 }}
           camera={{ position: [0, 0, 1], fov: 70 }}
         >
@@ -51,7 +52,9 @@ const MenuBar = () => {
           <ProductUniFi productInfo={exampleProductUniFi} />
           <OrbitControls makeDefault />
         </Canvas> */}
-        <button onClick={addProductHandle}>Add a product</button>
+          <button onClick={addProductHandle}>Add a product</button>
+        </div>
+        <div>product info</div>
       </div>
     </>
   );

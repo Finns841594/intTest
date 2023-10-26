@@ -67,3 +67,9 @@ export const computeAlignmentQuaternion = (from: Vector3, to: Vector3) => {
 
   return quaternion;
 };
+
+export const limitProductHeigt = (vec: Vector3): Vector3 => {
+  // can set the limitation relates to the Room height
+  const limitedHeigt = Math.max(0.5, Math.min(vec.y, 2.8));
+  return new Vector3(vec.x, limitedHeigt, vec.z);
+};
