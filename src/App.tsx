@@ -1,3 +1,4 @@
+import AppHeader from './components/AppHeader';
 import CurrentProductsList from './components/CurrentProductsList';
 import MainScene from './components/MainScene';
 import MenuBar from './components/MenuBar';
@@ -6,6 +7,7 @@ import { ProductProvider } from './contexts/AppContext';
 function App() {
   return (
     <ProductProvider>
+      <AppHeader />
       <div className="h-screen bg-slate-100 flex flex-col items-center">
         <div className="w-10/12 h-4/6">
           <MenuBar />
