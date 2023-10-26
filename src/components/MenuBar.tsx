@@ -5,9 +5,16 @@ import { v4 as uuidv4 } from 'uuid';
 import { Canvas } from '@react-three/fiber';
 import ProductUniFi from './ProductUniFi';
 import { OrbitControls } from '@react-three/drei';
+import { FlakesTexture } from 'three-stdlib';
 
 const MenuBar = () => {
-  const { setAddAProduct, setProducts, products } = useProductContext();
+  const {
+    setAddAProduct,
+    setProducts,
+    products,
+    setIsAttached,
+    setCurrentProductId,
+  } = useProductContext();
 
   const addProductHandle = () => {
     const newProducts = {
@@ -24,6 +31,8 @@ const MenuBar = () => {
     } as Product;
     setAddAProduct(true);
     setProducts([...products, newProducts]);
+    setCurrentProductId(newProducts.id);
+    setIsAttached(false);
   };
   const exampleProductUniFi = {
     id: uuidv4(),
@@ -34,14 +43,14 @@ const MenuBar = () => {
   return (
     <>
       <div className="border p-3">
-        <Canvas
+        {/* <Canvas
           style={{ width: 100, height: 100 }}
           camera={{ position: [0, 0, 1], fov: 70 }}
         >
           <ambientLight />
           <ProductUniFi productInfo={exampleProductUniFi} />
           <OrbitControls makeDefault />
-        </Canvas>
+        </Canvas> */}
         <button onClick={addProductHandle}>Add a product</button>
       </div>
     </>
