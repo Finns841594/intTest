@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useGLTF } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
 import { useEffect, useState } from 'react';
@@ -22,7 +23,6 @@ const Room = () => {
   const [wallMeshes, setWallMeshes] = useState<Mesh[]>([]);
 
   useEffect(() => {
-    // console.log(floorPlan);
     const walls: Mesh[] = [];
     const localWallsGroup = new Group();
     const localFurnituresGroup = new Group();
@@ -84,8 +84,6 @@ const Room = () => {
             : product
         )
       );
-      console.log('positioned product: ', currentProductId);
-      // console.log('products now: ', products);
     }
   };
 

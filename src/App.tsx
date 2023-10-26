@@ -6,23 +6,12 @@ import { ProductProvider } from './contexts/AppContext';
 function App() {
   return (
     <ProductProvider>
-      <div className="h-full bg-slate-100 flex flex-col items-center">
+      <div className="h-screen bg-slate-100 flex flex-col items-center">
         <h1>View</h1>
         <MenuBar />
-        <Canvas
-          style={{ width: 1280, height: 720 }}
-          camera={{ position: [6, 8, 10] }}
-          shadows
-        >
-          <ambientLight />
-          <pointLight
-            position={[10, 8, 10]}
-            intensity={100}
-            color="#fff"
-            castShadow
-          />
+        <div className="w-10/12 h-4/6">
           <MainScene />
-        </Canvas>
+        </div>
         <h1>CurrentProductsList</h1>
         {/* <CurrentProductsList /> */}
       </div>

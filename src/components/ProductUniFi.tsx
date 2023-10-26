@@ -21,8 +21,6 @@ const ProductUniFi: React.FC<ProductUniFiProp> = ({ productInfo }) => {
     product.scene.scale.set(scaleValue, scaleValue, scaleValue);
   }
 
-  console.log('I am ', productInfo.id, 'at', productInfo.position);
-
   const limitProductHeigt = (vec: Vector3): Vector3 => {
     // can set the limitation relates to the Room height
     const limitedHeigt = Math.max(0.5, Math.min(vec.y, 2.8));

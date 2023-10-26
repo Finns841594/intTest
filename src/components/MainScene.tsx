@@ -9,6 +9,7 @@ import Room from './Room';
 import ProductUniFi from './ProductUniFi';
 
 import { useProductContext } from '../contexts/AppContext';
+import { Canvas } from '@react-three/fiber';
 
 const Loader = () => {
   const { progress } = useProgress();
@@ -16,20 +17,31 @@ const Loader = () => {
 };
 
 const MainScene = () => {
-  const { products, productNewPosition } = useProductContext();
-  console.log('products now: ', products);
-  // console.log('productNewPosition', productNewPosition);
+  const { products } = useProductContext();
 
   return (
     <>
-      <Suspense fallback={<Loader />}>
-        <Room />
-        {products.map(product => (
-          <ProductUniFi key={product.id} productInfo={product} />
-        ))}
-        <OrbitControls makeDefault />
-        <Environment background={true} blur={0.5} preset={'sunset'} />
-      </Suspense>
+      <Canvas
+        style={{ width: '100%', height: '100%' }}
+        camera={{ position: [6, 8, 10] }}
+        shadows
+      >
+        <ambientLight />
+        <pointLight
+          position={[10, 8, 10]}
+          intensity={100}
+          color="#fff"
+          castShadow
+        />
+        <Suspense fallback={<Loader />}>
+          <Room />
+          {products.map(product => (
+            <ProductUniFi key={product.id} productInfo={product} />
+          ))}
+          <OrbitControls makeDefault />
+          <Environment background={true} blur={0.5} preset={'sunset'} />
+        </Suspense>
+      </Canvas>
     </>
   );
 };
