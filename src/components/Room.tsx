@@ -3,7 +3,6 @@ import { useGLTF } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
 import { useEffect, useState } from 'react';
 import {
-  Group,
   Mesh,
   MeshBasicMaterial,
   Quaternion,
@@ -119,6 +118,7 @@ const Room = () => {
         )
       );
     }
+    console.log('products: ', products);
   };
 
   return (

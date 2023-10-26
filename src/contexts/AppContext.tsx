@@ -2,6 +2,7 @@ import { ReactNode, createContext, useContext, useState } from 'react';
 import { Quaternion, Vector3 } from 'three';
 import { Product } from '../types/innerTypes';
 import { UUID } from 'crypto';
+import { initialProducts } from '../data/initialData';
 
 interface ProductProviderProps {
   children: ReactNode;
@@ -45,7 +46,7 @@ export const ProductProvider: React.FC<ProductProviderProps> = ({
   const [productNewQuaternion, setProductNewQuaternion] = useState(
     new Quaternion(0, 0, 0, 1)
   );
-  const [products, setProducts] = useState([] as Product[]);
+  const [products, setProducts] = useState(initialProducts);
   const [isAttached, setIsAttached] = useState(true);
   const [isPlaceing, setIsPlaceing] = useState(false);
   const [AddAProduct, setAddAProduct] = useState(false);
