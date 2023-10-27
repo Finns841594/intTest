@@ -92,15 +92,25 @@ Just clone the code, `npm i` and `npm start`.
 
 ### Highlighting Bug
 
-When placing a product, it will only attached on walls, but somehow the furnitures are also highlighted. Function-wise this does not cause error (product will not attach on furnitures even though they are highlighted). I spend some time but didn't figure out why, so I skipped temporally.
+When placing a product, it will only attached on highlighted meshes -- walls, but somehow the furnitures are also highlighted. Function-wise this does not cause errors (product will not attach on furnitures even though they are highlighted). I spend some time but didn't figure out why, I skipped temporally due to litmited time.
 
 ### Orgnizing the contexts
 
-I have set many contexts in `productContext` during developing process, maybe some of them can be combined and cleaned. But due to limited time, I have no time to clean this part of the code.
+I have set many contexts in `productContext` during developing process, maybe some of them can be combined and cleaned. But due to limited time, I have not done the cleaning.
 
 ### A Systematic solution to track user actions
 
 I find that most functions are highly relating to user interaction, including pointer postion and action, camera position and rotation. Should build a systematic solution to track user actions for making all kinds of functions in a better and clear way. My current function are archieved by global contexts and small handlers in each responding components.
+
+### More Functions
+
+1. Allow user to upload their own models to test out in the scene
+
+2. Make it possible to do more adjustment to the product: size, appearence etc
+
+3. A live tutorial to navigate the camera: for 3D developers maybe its natural to drag to move the camera, scroll to zoom. But Users might need some small animation tips to know how to control the camera.
+
+4. Mobile version.
 
 ### Quaternion
 
