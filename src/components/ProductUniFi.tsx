@@ -67,6 +67,7 @@ const ProductUniFi: React.FC<ProductUniFiProp> = ({ productInfo }) => {
             ? productNewPosition
             : productInfo.position
         }
+        quaternion={productInfo.quaternion}
         onClick={onProductClick}
       >
         <meshBasicMaterial

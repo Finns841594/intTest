@@ -28,15 +28,15 @@ const ProductInfoCard: React.FC<ProductInfoProp> = ({ productInfo }) => {
     setProducts(products.filter(product => product.id !== productInfo.id));
   };
 
-  const onLocateHandle = () => {
-    setIsLocatingProduct(true);
-    setCurrentProductId(productInfo.id);
-  };
+  // const onLocateHandle = () => {
+  //   setIsLocatingProduct(true);
+  //   setCurrentProductId(productInfo.id);
+  // };
   return (
     <div
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="border-2 rounded-md w-28 p-2 hover:border-cyan-500 hover:border-2"
+      className="border-2 rounded-md w-30 p-2 hover:border-cyan-500 hover:border-2"
     >
       <p className="px-1 font-bold">{productInfo.name}</p>
       <div className="flex flex-row justify-between gap-3 mt-1">

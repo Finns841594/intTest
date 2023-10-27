@@ -28,7 +28,7 @@ const MainScene = () => {
         }}
         shadows
       >
-        <axesHelper args={[10]} />
+        {/* <axesHelper args={[10]} /> */}
         <ambientLight />
         <pointLight
           position={[10, 8, 10]}

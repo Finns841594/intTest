@@ -32,7 +32,6 @@ const Room = () => {
     floorPlan.scene.traverse(child => {
       if (child instanceof Mesh) {
         allMeshes.push(child);
-        console.log('refreshing');
         if (child.name.toLowerCase().includes('ceilingnode')) {
           child.material.color.set('white');
           // Hide the ceiling is user is putting products from above
@@ -47,7 +46,6 @@ const Room = () => {
           // Attempt to color all the walls, but colored the furnitures as well, have no idea why...
           if (isPlaceing) {
             child.material.color.set('cyan');
-            console.log('changed color for: ', child.name);
           } else {
             child.material.color.set('white');
           }
