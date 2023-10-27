@@ -13,7 +13,7 @@ For this app, you can:
 
 By click the button of the sample product, you can add product to scene easily. Placable surfaces will be highligted before finsh placing.
 I kept the size of product big for easier visulization.
-![Add a product](manul/Add_a_product.jpg)
+![Add a product](./public/manual/Add_a_product.gif)
 
 ### Move a product
 
