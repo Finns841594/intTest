@@ -98,6 +98,10 @@ When placing a product, it will only attached on highlighted meshes -- walls, bu
 
 I have set many contexts in `productContext` during developing process, maybe some of them can be combined and cleaned. But due to limited time, I have not done the cleaning.
 
+### Locate the product in the scene
+
+This was one of my original design for deleteing a product: move the camera to the product that is going to be delete, so the user will not delete wrong thing. But this require more time and practice on controling the camera. Relating code are commented in the `<ProductInfoCard />`
+
 ### A Systematic solution to track user actions
 
 I find that most functions are highly relating to user interaction, including pointer postion and action, camera position and rotation. Should build a systematic solution to track user actions for making all kinds of functions in a better and clear way. My current function are archieved by global contexts and small handlers in each responding components.
