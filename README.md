@@ -1,4 +1,4 @@
-# Ubiquity Code Interview Project
+# Ubiquiti Code Interview Project
 
 This project was built for a code interview.
 
