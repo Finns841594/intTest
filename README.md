@@ -41,9 +41,9 @@ You can check the sample products by the top menu bar.
 <ProductProvider>
   <AppHeader />
   <div>
-    <MenuBar />
-    <MainScene />
-    <CurrentProductsList />
+    <MenuBar /> // Product samples and information
+    <MainScene /> // Main Canvas
+    <CurrentProductsList /> // List for products in scene
   </div>
 </ProductProvider>
 ```
@@ -92,7 +92,7 @@ Just clone the code, `npm i` and `npm start`.
 
 ### Highlighting Bug
 
-When placing a product, it will only attached on walls, but somehow the furnitures are also highlighted. Function-wise this does not cause error (product will not attach on furnitures even though they are highlighted), but I should figure out why.
+When placing a product, it will only attached on walls, but somehow the furnitures are also highlighted. Function-wise this does not cause error (product will not attach on furnitures even though they are highlighted). I spend some time but didn't figure out why, so I skipped temporally.
 
 ### Orgnizing the contexts
 
@@ -100,8 +100,8 @@ I have set many contexts in `productContext` during developing process, maybe so
 
 ### A Systematic solution to track user actions
 
-I find that most function are highly relating to user interaction, including pointer postion and action, camera position and rotation. Should build a systematic solution to track user actions for achieving all kinds of functions in a better and clear way. My current function are archieved by global contexts and small handlers in each responding components.
+I find that most functions are highly relating to user interaction, including pointer postion and action, camera position and rotation. Should build a systematic solution to track user actions for making all kinds of functions in a better and clear way. My current function are archieved by global contexts and small handlers in each responding components.
 
 ### Quaternion
 
-Should understand quaternion better for skilling up 3D development skill. Found [this](https://eater.net/quaternions/) good tutorial to share.
+Should understand quaternion better for advancing my 3D development skills. Found [this](https://eater.net/quaternions/) good tutorial to share.
