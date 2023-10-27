@@ -5,7 +5,7 @@ This repo is set to public for a limited time for Simon, Egils and their team to
 
 ## Project Guidence
 
-Visit [here](https://threejs-ubi.vercel.app) for testing out deployed app.
+Visit [https://threejs-ubi.vercel.app](https://threejs-ubi.vercel.app) for testing out deployed app.
 
 For this app, you can:
 
@@ -18,16 +18,19 @@ I kept the size of product big for easier visulization.
 ### Move a product
 
 Click a product in the scene to relocate it.
-
+![Move a product](./public/manual/Move_a_product.gif)
 If camera is higher than ceiling, the ceiling will be hidden for better relocating.
+![Move a product from above](./public/manual/Move_a_product_2.gif)
 
 ### Delete a product
 
 All products in the scene are list below the canvas. Hover on a card will highlight the corresponding product in the scene, and then click Delete button to remove it from the scene.
+![Delete a product](./public/manual/Delete_a_product.gif)
 
 ### Samples are in 3D
 
 You can check the sample products by the top menu bar.
+![Preview samples](./public/manual/Preview_samples.gif)
 
 ## Code Explaining
 
